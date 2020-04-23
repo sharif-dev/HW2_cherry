@@ -1,9 +1,11 @@
 package com.example.homework2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,7 +57,7 @@ public class sliderAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
 
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
@@ -63,7 +65,27 @@ public class sliderAdapter extends PagerAdapter {
         ImageView slideImageView = (ImageView) view.findViewById(R.id.slide_image);
         TextView slideHeading = (TextView) view.findViewById(R.id.heading);
         TextView slideDescription = (TextView) view.findViewById(R.id.description);
+        Button slideBTN = (Button) view.findViewById(R.id.setBtn);
 
+        slideBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (position){
+                    case 0 :
+                        Intent myIntent = new Intent(context,Feature1Setting.class);
+                        context.startActivity(myIntent);
+                        break;
+                    case 1 :
+                        Intent myIntent2 = new Intent(context,Feature2Setting.class);
+                        context.startActivity(myIntent2);
+                        break;
+                    case 2 :
+                        Intent myIntent3 = new Intent(context,Feature3Setting.class);
+                        context.startActivity(myIntent3);
+                        break;
+                }
+            }
+        });
         slideImageView.setImageResource(slide_images[position]);
         slideHeading.setText(slide_headings[position]);
         slideDescription.setText(slide_descs[position]);

@@ -3,6 +3,7 @@ package com.example.homework2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager slideView ;
+    ViewPager slideView;
     LinearLayout dots;
 
     TextView[] buttonDots;
@@ -48,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         slideView.addOnPageChangeListener(viewListener);
 
+
     }
 
-    public void addDotsIndicator(int position){
+    public void addDotsIndicator(int position) {
 
         buttonDots = new TextView[3];
         dots.removeAllViews();
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             buttonDots[position].setTextColor(getResources().getColor(R.color.colorWhite));
     }
 
-    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener(){
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -82,15 +84,16 @@ public class MainActivity extends AppCompatActivity {
             addDotsIndicator(position);
             currentPage = position;
 
-            if(position == 0){
+            if (position == 0) {
 
                 nextButton.setEnabled(true);
+
                 backButton.setEnabled(false);
                 backButton.setVisibility(View.INVISIBLE);
                 nextButton.setText("Next");
                 backButton.setText("");
 
-            }else if( position == buttonDots.length - 1){
+            } else if (position == buttonDots.length - 1) {
 
                 nextButton.setEnabled(true);
                 backButton.setEnabled(true);
@@ -99,8 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 nextButton.setText("Finish");
                 backButton.setText("Back");
 
-            }
-            else{
+            } else {
                 nextButton.setEnabled(true);
                 backButton.setEnabled(true);
                 backButton.setVisibility(View.VISIBLE);
@@ -116,5 +118,7 @@ public class MainActivity extends AppCompatActivity {
         public void onPageScrollStateChanged(int state) {
 
         }
+
     };
+
 }
