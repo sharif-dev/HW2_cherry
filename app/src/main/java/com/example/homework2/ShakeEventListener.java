@@ -9,13 +9,16 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
+import android.os.Build;
 import android.os.IBinder;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 public class ShakeEventListener extends Service implements SensorEventListener {
-    private static int SHAKE_LIMIT = 9;
+    private static int SHAKE_LIMIT = 2;
     public void setLimit(int shake_limit){
         SHAKE_LIMIT = shake_limit;
     }
@@ -24,27 +27,18 @@ public class ShakeEventListener extends Service implements SensorEventListener {
     private float mAccelCurrent = SensorManager.GRAVITY_EARTH;
     private float mAccelLast = SensorManager.GRAVITY_EARTH;
 
-    private ShakeListener listener;
+//    private ShakeListener listener;
 
 
-
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        // get sensor manager on starting the service
-        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        // have a default sensor configured
-        int sensorType = Sensor.TYPE_LIGHT;
-
-
-//        mSensorManager.registerListener(this, sensor,
-//                SensorManager.SENSOR_DELAY_NORMAL);
-
+        System.out.println("servive start");
+        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
         return START_STICKY;
+
     }
-
-
-
 
     @Nullable
     @Override
@@ -52,16 +46,6 @@ public class ShakeEventListener extends Service implements SensorEventListener {
         return null;
     }
 
-    public interface ShakeListener {
-        public void onShake();
-    }
-
-
-    public ShakeEventListener(Activity a, ShakeListener l) {
-        mSensorManager = (SensorManager) a.getSystemService(Context.SENSOR_SERVICE);
-        listener = l;
-        registerListener();
-    }
 
     public void registerListener() {
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
@@ -79,8 +63,15 @@ public class ShakeEventListener extends Service implements SensorEventListener {
         mAccelCurrent = (float) Math.sqrt(x*x + y*y + z*z);
         float delta = mAccelCurrent - mAccelLast;
         mAccel = mAccel * 0.9f + delta;
-        if(mAccel > SHAKE_LIMIT)
-            listener.onShake();
+        if(mAccel > SHAKE_LIMIT) {
+            System.out.println("shaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaake");
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+//                   setTurnScreenOn(true);
+//               } else {
+//                   final Window window = getWindow();
+//                   window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+//               }
+        }
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
