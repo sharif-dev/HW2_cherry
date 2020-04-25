@@ -3,7 +3,7 @@
     package="com.example.homework2">
 
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".ShakeEventListener" />
+        <service android:name=".ShakeEventListener"
+            android:exported="true"
+            android:process=":ServiceProcess" />
     </application>
 
 </manifest>

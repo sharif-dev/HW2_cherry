@@ -5,4 +5,15 @@
     <color name="colorAccent">#E91E63</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransparentWhite">#CCCCCC</color>
+    <color name="sliderBack">#4227395a</color>
+    <array name="progressGradientColors">
+        <item>#00FF00</item>
+        <item>#66ff00</item>
+        <item>#ccff00</item>
+        <item>#FFFF00 </item>
+        <item>#FFCC00 </item>
+        <item>#FF6600</item>
+        <item>#FF0000</item>
+    </array>
+
 </resources>
