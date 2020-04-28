@@ -37,7 +37,7 @@
         android:id="@+id/timeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:layout_marginBottom="194dp"
         android:text="NO ALARM SET"
         android:textColor="#FFFFFF"
@@ -45,7 +45,8 @@
         app:layout_constraintBottom_toTopOf="@+id/pickBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/timeItselfView"
@@ -96,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="66dp"
         android:layout_marginLeft="66dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:text="Low"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -108,7 +109,7 @@
         android:id="@+id/high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="66dp"
         android:layout_marginRight="66dp"
         android:text="High
