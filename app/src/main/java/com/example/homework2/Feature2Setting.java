@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 public class Feature2Setting extends AppCompatActivity {
     boolean serviceIsAlive =false;
 
+
     ArcSeekBar  arcSeekBar ;
     Switch feat2Switch;
     @Override
