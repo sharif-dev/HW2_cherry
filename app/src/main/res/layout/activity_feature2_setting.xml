@@ -8,9 +8,10 @@
     tools:context=".Feature2Setting">
 
     <Switch
-        android:id="@+id/feature2Switch"
+        android:id="@+id/feature3Switch"
         android:layout_width="326dp"
         android:layout_height="58dp"
+        android:shadowColor="#FFFFFF"
         android:text="@string/shake_switch_txt"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorWhite"
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feature2Switch"
+        app:layout_constraintTop_toBottomOf="@+id/feature3Switch"
         app:layout_constraintVertical_bias="0.45" />
 
     <TextView

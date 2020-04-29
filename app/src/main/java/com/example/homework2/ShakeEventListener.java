@@ -37,8 +37,9 @@ public class ShakeEventListener extends Service implements SensorEventListener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        this.setLimit(intent.getExtras().getInt("limit"));
-        System.out.println("servive start");
+        this.setLimit(16-(intent.getExtras().getInt("limit")));
+//        Toast.makeText(getApplicationContext() , "service 2 start" , Toast.LENGTH_SHORT).show();
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_UI ,new Handler());
         return START_STICKY;
@@ -51,14 +52,6 @@ public class ShakeEventListener extends Service implements SensorEventListener {
         return null;
     }
 
-
-    public void registerListener() {
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    public void unregisterListener() {
-        mSensorManager.unregisterListener(this);
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
@@ -82,37 +75,27 @@ public class ShakeEventListener extends Service implements SensorEventListener {
                     wl.release();
                 }
                 else{
-                    Toast.makeText(getApplicationContext() , "sensitive = "+SHAKE_LIMIT , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext() , "sensitive = "+SHAKE_LIMIT , Toast.LENGTH_SHORT).show();
 
                 }
             }
         }
     }
 
+    @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        System.out.println("mcell = "+mAccel);
 
     }
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Toast.makeText(getApplicationContext() , "service 2 destroy" , Toast.LENGTH_SHORT).show();
         mSensorManager.unregisterListener(this);
 
-        System.out.println("destroyyyyyyy");
-        Toast.makeText(getApplicationContext() , "destroy" , Toast.LENGTH_SHORT).show();
 
     }
 
 
-
-
-
-    public void onResume() {
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    public void onPause() {
-        mSensorManager.unregisterListener(this);
-    }
 }

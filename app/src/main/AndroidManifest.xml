@@ -34,8 +34,18 @@
             android:name=".ShakeEventListener"
             android:exported="true"
             android:process=":ServiceProcess" />
-
+        <service
+            android:name=".FlatToGroundEventListener" />
         <receiver android:name=".AlertReceiver" />
+        <receiver android:name=".AdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin"
+                android:resource="@xml/policies" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

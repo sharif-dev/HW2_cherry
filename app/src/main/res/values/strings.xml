@@ -4,6 +4,13 @@
     <string name="switchON">ON</string>
     <string name="switchOFF">OFF</string>
     <string name="shake_switch_txt">shake feature</string>
+    <string name="sensitive_adjust">sensitive adjust :</string>
+    <string name="high">high</string>
+    <string name="low">low</string>
+    <string name="angle_sensitive">Angle sensitive :</string>
+    <string name="sleep_mode_feature">Sleep mode feature</string>
+    <string name="setting">Setting</string>
+    <string name="set_angle">set angle</string>
 
 
 </resources>
