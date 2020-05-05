@@ -35,7 +35,7 @@ public class Feature1AlarmPage extends AppCompatActivity {
         setContentView(R.layout.activity_feature1_alarm_page);
 
         //get shake strength needed to dismiss the alarm
-        SharedPreferences.Editor editor = getSharedPreferences("savedTime", MODE_PRIVATE).edit();
+        final SharedPreferences.Editor editor = getSharedPreferences("savedTime", MODE_PRIVATE).edit();
         SharedPreferences prefs = getSharedPreferences("savedTime", MODE_PRIVATE);
         int strength = prefs.getInt("strength", 100);
         final int temp = (int) (strength/20);
@@ -62,6 +62,8 @@ public class Feature1AlarmPage extends AppCompatActivity {
                 if(event.values[2] > 0.5f*temp || event.values[2] < -0.5f*temp){
                     vibrator.cancel();
                     r.stop();
+                    editor.putBoolean("isSet", false);
+                    editor.apply();
                     sensorManager.unregisterListener(sensorEventListener);
                     Intent startIntent = new Intent(getApplicationContext(), Feature1Setting.class);
                     startActivity(startIntent);
@@ -83,17 +85,12 @@ public class Feature1AlarmPage extends AppCompatActivity {
             public void onClick(View v) {
                 vibrator.cancel();
                 r.stop();
+                editor.putBoolean("isSet", false);
+                editor.apply();
                 sensorManager.unregisterListener(sensorEventListener);
                 Intent startIntent = new Intent(getApplicationContext(), Feature1Setting.class);
                 startActivity(startIntent);
             }
         });
-
-
-
-
-
-
-
     }
 }

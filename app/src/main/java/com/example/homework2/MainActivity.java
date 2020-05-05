@@ -37,6 +37,21 @@ public class MainActivity extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.prvBtn);
         nextButton = (Button) findViewById(R.id.nextBtn);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slideView.setCurrentItem(slideView.getCurrentItem() - 1, true);
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slideView.setCurrentItem(slideView.getCurrentItem() + 1, true);
+            }
+        });
+
+
         nextButton.setEnabled(true);
         backButton.setEnabled(false);
         backButton.setVisibility(View.INVISIBLE);
@@ -87,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             if (position == 0) {
 
                 nextButton.setEnabled(true);
-
                 backButton.setEnabled(false);
                 backButton.setVisibility(View.INVISIBLE);
                 nextButton.setText("Next");

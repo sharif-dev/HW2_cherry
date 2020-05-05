@@ -69,6 +69,7 @@
         android:layout_height="62dp"
         android:background="@drawable/custom_button"
         android:text="@string/set_angle"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
